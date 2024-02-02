@@ -71,10 +71,16 @@ impl Input {
         self
     }
 
-    // Reset the cursor and value to default
+    /// Reset the cursor and value to default
     pub fn reset(&mut self) {
-        self.cursor = Default::default();
-        self.value = Default::default();
+        self.reset_value(String::new())
+    }
+
+    /// Reset the current value manually.
+    /// Cursor will be set to the given value's length.
+    pub fn reset_value(&mut self, value: String) {
+        self.cursor = value.chars().count();
+        self.value = value;
     }
 
     /// Handle request and emit response.
